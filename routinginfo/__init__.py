@@ -1,4 +1,5 @@
 import mrtparse
+import radix
 
 class PrefixASPath:
     def __init__(self, filename):
@@ -26,3 +27,4 @@ class PrefixASPath:
                                     aspaths.append(path_seg['val'])
             if prefix is not None:
                 return prefix, prefixlen, aspaths
+

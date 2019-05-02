@@ -1,5 +1,5 @@
 import sys
-import routinginfo.PrefixASPath
+import routinginfo
 
 USAGE="""
 Usage: {} [mrt filename]
@@ -11,6 +11,6 @@ if __name__ == '__main__':
 
     filename = sys.argv[1]
 
-    d = routinginfo.PrefixASPath.PrefixASPath(filename)
+    d = routinginfo.PrefixASPath(filename)
     for prefix, prefixlen, aspaths in d:
         print(prefix, prefixlen, aspaths)
