@@ -2,8 +2,10 @@ import mrtparse
 import radix
 import logging
 
+from typing import List
+
 class PrefixASPath:
-    def __init__(self, filename):
+    def __init__(self, filename:str):
         self.reader = mrtparse.Reader(filename)
 
     def __iter__(self):
@@ -63,16 +65,16 @@ class PrefixInfo:
             if prefix is not None:
                 self.add(prefix, prefixlen, aspaths)
 
-            if c % 1000 == 0:
+            if c % 10000 == 0:
                 logging.debug("read {} records".format(c))
-#                break
+                break
 
     def read(self, filename, clear=False):
         if clear:
             self._rtree = radix.Radix()
         self.__read(filename)
 
-    def add(self, prefix, prefixlen, aspaths):
+    def add(self, prefix:str, prefixlen:int, aspaths:List[List[str]]):
         rnode = self._rtree.add(prefix, prefixlen)
         rnode.data["aspaths"] = aspaths
 
